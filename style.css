@@ -1,0 +1,34 @@
+*{
+  box-sizing: border-box;
+
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#calc-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+  /* text-align: center; */
+}
+
+#display {
+  align-self: flex-end;
+}
+
+#buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /* width: 50%; */
+}
