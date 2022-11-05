@@ -19,7 +19,7 @@ body {
   flex: auto;
   flex-direction: column;
   justify-content: center;
-  max-width: 40%;
+  max-width: 30%;
   min-width: 125px;
 }
 
@@ -49,4 +49,10 @@ body {
   grid-column: span 2;
   aspect-ratio: 2/1;
   border-radius: 75px;
+}
+
+@media (max-width: 800px){
+  #calc-container{
+    max-width: 50%;
+  }
 }
