@@ -51,8 +51,8 @@ body {
   border-radius: 75px;
 }
 
-@media (max-width: 800px){
+@media only screen and (max-width: 1000px){
   #calc-container{
-    max-width: 50%;
+    max-width: 45%;
   }
 }
