@@ -8,13 +8,18 @@ main {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: black;
 }
 
 body {
   min-height: 100vh;
+  margin: 0;
 }
 
 #calc-container {
+  background-color: rgb(25, 25, 25);
+  padding: 10px;
+  border-radius: 15px;
   display: inline-flex;
   flex: auto;
   flex-direction: column;
@@ -28,16 +33,31 @@ body {
 }
 
 #display p{
-  font-size: 10vw;
+  font-size: 5.5vw;
   margin: 0;
+  color: white;
 }
 
 #buttons {
   display: grid;
+  grid-gap: 5px;
   grid-template-columns: repeat(4, 1fr);
 }
 
+.button:nth-child(4n),
+#equals-btn {
+  background-color: rgb(246,153,27);
+  color: white;
+}
+
+.button:nth-child(1), .button:nth-child(2), .button:nth-child(3){
+  background-color: rgb(151,151,151);
+  color: black;
+}
+
 .button {
+  background-color: rgb(49,49,49);
+  color: white;
   padding: 0;
   font-size: 4vw;
   border: none;
