@@ -27,8 +27,15 @@ const display = document.getElementById("display");
 let displayConentHolder = 0;
 
 function digitHandler(){
-  console.log(parseInt(this.textContent));
+  if(displayConentHolder != 0){
+    displayConentHolder *= 10;
+    displayConentHolder += parseInt(this.textContent);
+    updateDisplay(displayConentHolder);
+  }
+  else{
+  // console.log(parseInt(this.textContent));
   updateDisplay(parseInt(this.textContent));
+  }
 }
 
 function clearButtonHandler(){
@@ -36,9 +43,10 @@ function clearButtonHandler(){
 }
 
 function updateDisplay(content){
+  displayConentHolder = content;
   const displayContent = document.createElement('p');
   displayContent.setAttribute("style", "font-size: 10vw margin: 0;");
-  displayContent.textContent = content;
+  displayContent.textContent = displayConentHolder;
   display.replaceChild(displayContent,display.firstElementChild);
 }
 
