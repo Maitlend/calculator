@@ -17,6 +17,7 @@ const addButton = document.getElementById("plus-btn");
 const equalsButton = document.getElementById("equals-btn");
 const decimalButton = document.getElementById("decimal-btn");
 const percentButton = document.getElementById("percent-btn");
+const inverseButton = document.getElementById("plus-minus-btn");
 
 zeroButton.addEventListener('click', digitHandler.bind(zeroButton));
 oneButton.addEventListener('click', digitHandler.bind(oneButton));
@@ -38,7 +39,7 @@ addButton.addEventListener('click', operandHandler.bind(addButton));
 equalsButton.addEventListener('click', operationHandler);
 decimalButton.addEventListener('click', decimalHandler);
 percentButton.addEventListener('click', percentHandler);
-
+inverseButton.addEventListener('click', inverseHandler);
 
 const display = document.getElementById("display");
 let previousOperator = 0;
@@ -107,8 +108,12 @@ function decimalHandler(){
 
 function percentHandler(){
   let currentOperator = getDisplay();
-  currentOperator/=100;
-  updateDisplay(currentOperator);
+  updateDisplay(currentOperator/=100);
+}
+
+function inverseHandler(){
+  let currentOperator = getDisplay();
+  updateDisplay(-currentOperator);
 }
 
 function getDisplay(){
