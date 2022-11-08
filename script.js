@@ -15,6 +15,8 @@ const multiplyButton = document.getElementById("multiply-btn");
 const subtractButton = document.getElementById("minus-btn");
 const addButton = document.getElementById("plus-btn");
 const equalsButton = document.getElementById("equals-btn");
+const decimalButton = document.getElementById("decimal-btn");
+const percentButton = document.getElementById("percent-btn");
 
 zeroButton.addEventListener('click', digitHandler.bind(zeroButton));
 oneButton.addEventListener('click', digitHandler.bind(oneButton));
@@ -34,7 +36,8 @@ multiplyButton.addEventListener('click', operandHandler.bind(multiplyButton));
 subtractButton.addEventListener('click', operandHandler.bind(subtractButton));
 addButton.addEventListener('click', operandHandler.bind(addButton));
 equalsButton.addEventListener('click', operationHandler);
-
+decimalButton.addEventListener('click', decimalHandler);
+percentButton.addEventListener('click', percentHandler);
 
 
 const display = document.getElementById("display");
@@ -46,10 +49,11 @@ let operandPressed = false;
 // let currentOperator = 0;
 
 function digitHandler(){
-  let currentOperator = document.querySelector('#display p').textContent;
-  if(currentOperator != 0 && !operandPressed){
-
-    currentOperator *= 10;
+  let currentOperator = getDisplay();
+  if(currentOperator !== 0 && !operandPressed){
+    if(currentOperator.indexOf('.') === -1){
+      currentOperator *= 10;
+    }
     currentOperator += parseInt(this.textContent);
     updateDisplay(currentOperator);
   }
@@ -79,15 +83,36 @@ function operandHandler(){
       operand = '/';
       break;
   }
-  previousOperator = parseInt(document.querySelector('#display p').textContent);
+  previousOperator = parseFloat(getDisplay());
   operandPressed = true;
 }
 
 function operationHandler(){
   if(operand != ''){
-    updateDisplay(operate(operand,previousOperator,parseInt(document.querySelector('#display p').textContent)));
+    updateDisplay(operate(operand,previousOperator,parseFloat(getDisplay())));
     operand = '';
   }
+}
+
+function decimalHandler(){
+  let currentOperator = getDisplay();
+  if(operandPressed){
+    operandPressed = false;
+    updateDisplay('.');
+  }
+  else if(currentOperator.indexOf('.') === -1){
+    updateDisplay(currentOperator+='.');
+  }
+}
+
+function percentHandler(){
+  let currentOperator = getDisplay();
+  currentOperator/=100;
+  updateDisplay(currentOperator);
+}
+
+function getDisplay(){
+  return document.querySelector('#display p').textContent;
 }
 
 function updateDisplay(content){
