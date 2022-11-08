@@ -1,3 +1,4 @@
+const zeroButton = document.getElementById("zero-btn");
 const oneButton = document.getElementById("one-btn");
 const twoButton = document.getElementById("two-btn");
 const threeButton = document.getElementById("three-btn");
@@ -9,7 +10,13 @@ const eightButton = document.getElementById("eight-btn");
 const nineButton = document.getElementById("nine-btn");
 
 const clearButton = document.getElementById("ac-btn");
+const divideButton = document.getElementById("divide-btn");
+const multiplyButton = document.getElementById("multiply-btn");
+const subtractButton = document.getElementById("minus-btn");
+const addButton = document.getElementById("plus-btn");
+const equalsButton = document.getElementById("equals-btn");
 
+zeroButton.addEventListener('click', digitHandler.bind(zeroButton));
 oneButton.addEventListener('click', digitHandler.bind(oneButton));
 twoButton.addEventListener('click', digitHandler.bind(twoButton));
 threeButton.addEventListener('click', digitHandler.bind(threeButton));
@@ -22,19 +29,34 @@ nineButton.addEventListener('click', digitHandler.bind(nineButton));
 
 clearButton.addEventListener('click', clearButtonHandler);
 
+divideButton.addEventListener('click', operandHandler.bind(divideButton));
+multiplyButton.addEventListener('click', operandHandler.bind(multiplyButton));
+subtractButton.addEventListener('click', operandHandler.bind(subtractButton));
+addButton.addEventListener('click', operandHandler.bind(addButton));
+equalsButton.addEventListener('click', operationHandler);
+
+
+
 const display = document.getElementById("display");
+let previousOperator = 0;
+let operand = null;
+let operandPressed = false;
+
 // let displayContent = 0;
-let displayConentHolder = 0;
+// let currentOperator = 0;
 
 function digitHandler(){
-  if(displayConentHolder != 0){
-    displayConentHolder *= 10;
-    displayConentHolder += parseInt(this.textContent);
-    updateDisplay(displayConentHolder);
+  let currentOperator = document.querySelector('#display p').textContent;
+  if(currentOperator != 0 && !operandPressed){
+
+    currentOperator *= 10;
+    currentOperator += parseInt(this.textContent);
+    updateDisplay(currentOperator);
   }
   else{
   // console.log(parseInt(this.textContent));
   updateDisplay(parseInt(this.textContent));
+  operandPressed = false;
   }
 }
 
@@ -42,11 +64,37 @@ function clearButtonHandler(){
   updateDisplay(0);
 }
 
+function operandHandler(){
+  switch(this.textContent){
+    case '+':
+      operand = '+';
+      break;
+    case '−':
+      operand = '-';
+      break;
+    case '×':
+      operand = '*';
+      break;
+    case '÷':
+      operand = '/';
+      break;
+  }
+  previousOperator = parseInt(document.querySelector('#display p').textContent);
+  operandPressed = true;
+}
+
+function operationHandler(){
+  if(operand != ''){
+    updateDisplay(operate(operand,previousOperator,parseInt(document.querySelector('#display p').textContent)));
+    operand = '';
+  }
+}
+
 function updateDisplay(content){
-  displayConentHolder = content;
+  // currentOperator = content;
   const displayContent = document.createElement('p');
-  displayContent.setAttribute("style", "font-size: 10vw margin: 0;");
-  displayContent.textContent = displayConentHolder;
+  // displayContent.setAttribute("style", "font-size: 10vw margin: 0;");
+  displayContent.textContent = content;
   display.replaceChild(displayContent,display.firstElementChild);
 }
 
