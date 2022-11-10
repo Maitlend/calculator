@@ -55,7 +55,12 @@ function digitHandler(){
     if(currentOperator.indexOf('.') === -1){
       currentOperator *= 10;
     }
-    currentOperator += parseInt(this.textContent);
+    if(currentOperator>=0 || currentOperator === '.'){
+      currentOperator += parseFloat(this.textContent)
+    }
+    else{
+      currentOperator -= parseFloat(this.textContent)
+    }
     updateDisplay(currentOperator);
   }
   else{
