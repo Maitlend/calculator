@@ -141,7 +141,7 @@ return a*b;
 }
 
 function divide(a,b){
-  return a/b;
+  return b != 0 ? a/b: 'Error';
 }
 
 function operate(operand,a,b){
