@@ -19,6 +19,8 @@ const decimalButton = document.getElementById("decimal-btn");
 const percentButton = document.getElementById("percent-btn");
 const inverseButton = document.getElementById("plus-minus-btn");
 
+const buttons = document.querySelectorAll(".button");
+
 zeroButton.addEventListener('click', digitHandler.bind(zeroButton));
 oneButton.addEventListener('click', digitHandler.bind(oneButton));
 twoButton.addEventListener('click', digitHandler.bind(twoButton));
@@ -45,6 +47,14 @@ const display = document.getElementById("display");
 let previousOperator = 0;
 let operand = null;
 let operandPressed = false;
+
+buttons.forEach(button => button.addEventListener('click', (e) => {
+  button.classList.add('button-clicked');
+}));
+
+buttons.forEach(button => button.addEventListener('animationend', (e) => {
+  button.classList.remove('button-clicked');
+}));
 
 // let displayContent = 0;
 // let currentOperator = 0;
@@ -126,9 +136,7 @@ function getDisplay(){
 }
 
 function updateDisplay(content){
-  // currentOperator = content;
   const displayContent = document.createElement('p');
-  // displayContent.setAttribute("style", "font-size: 10vw margin: 0;");
   displayContent.textContent = content;
   display.replaceChild(displayContent,display.firstElementChild);
 }
