@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   font-family: -BlinkMacSystemFont, BlinkMacSystemFont, sans-serif;
 }
@@ -24,7 +24,7 @@ body {
   flex: auto;
   flex-direction: column;
   justify-content: center;
-  max-width: 30%;
+  max-width: 75%;
   min-width: 125px;
 }
 
@@ -32,8 +32,8 @@ body {
   align-self: flex-end;
 }
 
-#display p{
-  font-size: 5.5vw;
+#display p {
+  font-size: 18vw;
   margin: 0;
   color: white;
 }
@@ -46,20 +46,22 @@ body {
 
 .button:nth-child(4n),
 #equals-btn {
-  background-color: rgb(246,153,27);
+  background-color: rgb(246, 153, 27);
   color: white;
 }
 
-.button:nth-child(1), .button:nth-child(2), .button:nth-child(3){
-  background-color: rgb(151,151,151);
+.button:nth-child(1),
+.button:nth-child(2),
+.button:nth-child(3) {
+  background-color: rgb(151, 151, 151);
   color: black;
 }
 
 .button {
-  background-color: rgb(49,49,49);
+  background-color: rgb(49, 49, 49);
   color: white;
   padding: 0;
-  font-size: 4vw;
+  font-size: 7vw;
   border: none;
   border-radius: 50%;
   aspect-ratio: 1/1;
@@ -67,22 +69,56 @@ body {
 
 .button-clicked {
   animation-name: button-click;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
 }
 
-#zero-btn{
+#zero-btn {
   grid-column: span 2;
   aspect-ratio: 2/1;
   border-radius: 75px;
 }
 
-@media only screen and (max-width: 1000px){
-  #calc-container{
-    max-width: 45%;
+@media only screen and (min-width: 600px) {
+  #calc-container {
+    max-width: 55%;
+  }
+  #display p {
+    font-size: 13vw;
+  }
+  .button {
+    font-size: 6vw;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #calc-container {
+    max-width: 30%;
+  }
+  #display p {
+    font-size: 7vw;
+  }
+  .button {
+    font-size: 3vw;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  #calc-container {
+    max-width: 22.5%;
+  }
+  #display p {
+    font-size: 5.5vw;
+  }
+  .button {
+    font-size: 2.5vw;
   }
 }
 
 @keyframes button-click {
-  from {filter: brightness(160%);}
-  to {filter: brightness(100%);}
+  from {
+    filter: brightness(160%);
+  }
+  to {
+    filter: brightness(100%);
+  }
 }
